@@ -146,11 +146,16 @@ Si quieres borrar contenedores o imágenes (son espacio en disco):
 * Borrar una imagen: `docker rmi -f IMAGE_ID`
 
 
-## Biodocker
+## BioContainers
 
-Este dockerfile vive en el [github de Biodocker](https://github.com/BioDocker/). En un momento veremos qué es Biodocker, pero primero sigamos con el ejemplo de nuestro dockerfile. 
+En los ejemplos anteriores utilizamos un contenedor de Ubuntu en su expresión más sencilla (sin casi nada instalado). Docker permite además bajar imágenes que contengan no sólo Ubuntu a secas, sino otro sofware instalado sobre eso.
 
-Vamos a utilizar ese dockerfile para crear un contenedor:
+[BioContainers](https://github.com/BioContainers/specs) es un proyecto que está realizando contenedores de softawere bioinformático. 
+
+[Checa la lista de contendores disponinbles](https://github.com/BioContainers/containers) 
+
+El contendor básico BioContainers tiene varias herramientas de rutina que utilizaremos (por ejemplo `curl`), por lo que recomiendo que trabajemos en este contenedor para realizar nuestras prácticas.
+
 
 ```
 $ docker pull biodckr/biodocker
