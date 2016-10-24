@@ -6,6 +6,8 @@
 
 Este es el repositorio de apuntes y datos del curso Introducción a la bioinformática reproducible para ecología y genética brindado por Alicia Mastretta Yanes.
 
+Contacto: a.mstt.yanes@gmail.com
+
 ### Temario:
 
 1. [Principios de investigación reproducible en bioinformática](Tema1/1_Principios_investigacion_reproducible en_bioinformatica.md)
