@@ -206,7 +206,13 @@ Es un repositorio de código que:
 ![](Octocat.png)
 
 
+## Preparar un repositorio de datos y código
 
+La mejor manera de preparar un repositorio de datos y código es tener organizado desde un principio nuestro proyecto bioinformático. 
+
+Checa las notas:
+
+[**Organización de un proyecto bioinformático**](2_Organización_de_un_proyecto_bioinformático.md).
 
 
 <div style="page-break-after: always;"></div>
