@@ -198,26 +198,20 @@ El contenedor creado a partir de `biodckr/biodocker` ya tiene varias cosas insta
 Para que un contendor pueda "ver" contenido en nuestra computadora necestiamos correr la imagen deseada dentro de un contenedor, pero **montando un volumen**, es decir un directorio en tu equipo que podrá ser accedido por el contenedor:
 
 ```
-docker run -v /Users/ticatla/Copy/Science/Teaching/Mx/BioinfInvgRepro/BioinfInvRepro2016-II/Practicas/Uni5/DatosContenedor1:/DatosContenedorEjercicioClase -it ubuntu /bin/bash
+docker run -v /Users/ticatla/hubiC/Science/Teaching/Mx/BioinformaticaCUCBA-2016:/data -it biodckr/biodocker bash
 ```
 
 Desglozando el comando anterior:
 
 `-v` es la bandera para indicar que queremos que monte un volumen 
+`/Users/ticatla/hubiC/Science/Teaching/Mx/BioinformaticaCUCBA-2016` es la ruta absoluta. Sí, absoluta (así que cambiala por la ruta de tu equipo) ya que así es cuando se trata de montar volúmenes :(. Ojo, para windows debes iniciar la ruta con `/c/Users` y después el resto de la ruta.
 
-`/Users/ticatla/Copy/Science/Teaching/Mx/BioinfInvgRepro/BioinfInvRepro2016-II/Practicas/Uni5/DatosContenedor1` es la ruta absoluta. Sí, absoluta (así que cambiala por la ruta de tu equipo) ya que así es cuando se trata de montar volúmenes :(. Ojo, para windows debes iniciar la ruta con `/c/Users` y después el resto de la ruta.
-
-`:/DatosContenedorEjercicioClase` es el nombre del directorio como quremos que aparezca dentro de nuestro contenedor. 
+`:/DatosContenedor` es el nombre del directorio como quremos que aparezca dentro de nuestro contenedor. 
 
 Explora el volumen que montaste, prueba hacer un archivo. Nota que puedes acceder a el desde tu explorador, es decir todo lo que suceda en ese directorio puedes verlo/modificarlo desde dentro y fuera del contenedor. 
 
 ```
-root@dd4667e94adb:/# ls
-DatosContenedorEjercicioClase  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
-root@dd4667e94adb:/# cd DatosContenedorEjercicioClase/
-root@dd4667e94adb:/DatosContenedorEjercicioClase# ls
-eg_ddRAD_data.fastq
-root@dd4667e94adb:/DatosContenedorEjercicioClase# touch Prueba
-root@dd4667e94adb:/DatosContenedorEjercicioClase# ls
-Prueba  eg_ddRAD_data.fastq
+biodocker@fd13b1070dc0:/data$ ls
+AsistentesCurso_MastrettaOct2016.xlsx  README.md  Tema1  Tema3  Tema5
+Practicas                              Tareas     Tema2  Tema4  Tema6
 ```
