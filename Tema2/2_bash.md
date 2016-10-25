@@ -424,7 +424,7 @@ nuevos_final.bim	nuevos_final.log
 
 
 ### `?`
-Parecido a ´*´ pero para un sólo carácter.
+Parecido a `*` pero para un sólo carácter.
 
 ```
 $ ls *.b??
