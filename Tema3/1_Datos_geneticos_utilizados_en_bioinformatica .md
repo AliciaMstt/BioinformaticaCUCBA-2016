@@ -136,6 +136,9 @@ Los datos FASTQ típicamente están comprimidos en formato
 `gzip` (.gz) o `tar` (.tar.gz o .tgz).
 
 
+Los datos crudos deben filtrarse y editarse para quedarnos con los **datos limpios**, que son los que se analizarán para resolver preguntas biológicas. A esto se le conoce como [Pre-procesamiento](2_Pre-procesamiento.md) y lo veremos en su propia sección. 
+
+
 ## Datos procesados
 
 Son los datos *output* de procesar los datos crudos (ya limpios) con un programa bioinformático para darles significado biológico, como son (dependiendo de la naturaleza de los datos): 

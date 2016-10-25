@@ -121,11 +121,9 @@ Lo encuentras en el menú Help:
 
 4) Baja datos de prueba de Galaxy 
 
-    Shared Data-> Data Libraries deprecated ->Sample NGS Datasets-> Import  human illumina dataset to your current history.
+    Shared Data-> Data Libraries 
 
-En el último paso deberás ver algo así:
-
-![galaxy_importdataset.PNG](galaxy_importdataset.PNG)
+En barra de búsqueda poner: `Sample NGS Datasets`. Click en `human Illumina dataset`. Luego click en `to History`.
 
 5) Ve al menu **Analyze Data** para hacer un **FastQC Read Quality report**. Está dentro de **NGS: QC and manipulation**, en el menú de herramientas de la izquierda
 
