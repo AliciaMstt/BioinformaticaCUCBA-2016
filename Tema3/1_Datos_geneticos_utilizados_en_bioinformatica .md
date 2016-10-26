@@ -405,7 +405,7 @@ FID	IID	PAT	MAT	SEX	PHENOTYPE	abph1.15_G	ae1.8_A	an1.3_A	ba1.5_G	ba1.7_A	csu1138
 
 #### Documentos de texto 
 
-Archivos cvs con las secuencias e información asociada. Programas como Stacks, pyRAD, OBITools y muchos otros los manejan. 
+Archivos csv con las secuencias e información asociada. Programas como Stacks, pyRAD, OBITools y muchos otros los manejan. 
 
 
 
