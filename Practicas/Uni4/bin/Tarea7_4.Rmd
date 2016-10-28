@@ -1,0 +1,102 @@
+---
+title: "Tarea 7_4"
+output: html_document
+---
+
+## Tarea 
+
+1) Baja un mapa (nivel nacional) que te interese del GeoPortal de la CONABIO (http://www.conabio.gob.mx/informacion/gis/) , ploteálo y agrega los puntos del muestro de maíz, utilizando una forma de punto diferente para los teocintles, y que los puntos estén coloreados por CategAltitud. El nombre de los archivos descargados del geoportal debe ser el mismo que tienen en el geoportal (para que yo lo pueda correr).
+
+2) En el recuadro de abajo escribe el código para hacer una gráfica parecida a la de la imagen. Nota que están ordenados con las muestras de maíz de menor a mayor altitud primero y al final (derecha) las muestras de teocintle.
+
+Necesitarás:
+1. Asegúrate que tu wd sea `Practicas/Uni7/bin`, pero NO pongas en tu script setwd o NO correrá en mi computadora.
+2. Los datosQ resultado de correr admixture. Están en `Practicas/Uni7/data/maices_admixture.Q". Cada línea corresponde a los valores Q de un individuo de maíz o teocintle en el mismo orden que el archivo "Practicas/Uni7/meta/maizteocintle_SNP50k_meta_extended.txt`.
+3. Los datos de Altitud que se encuentran en el archivo `maizteocintle_SNP50k_meta_extended.txt`.
+4. Para poner en dos páneles uno arriba de otro en una misma gráfica necesitas escribir en una  línea de R antes de la línea donde haces tu plot: par(mfrow=c(2,1). Nota: Si quieres volver a tener un sólo panel por gráfica: par(mfrow=c(1,1)
+
+```{r, echo=FALSE}
+# load Q data
+tbl=read.table("../data/maices_admixture.Q")
+
+# Load metadata
+fullmat<- read.delim("../meta/maizteocintle_SNP50k_meta_extended.txt")
+
+# merge 
+tbl<-cbind(tbl, fullmat)
+
+#order by altitude and separate teosintes
+tbl<-tbl[c(order(tbl$Altitud[1:161]), c(163,165,164,162)), ]
+
+# plot
+par(mfrow=c(2,1), mar = c(0,4,0,1) + 0.1)
+plot(x=1:165, y=tbl$Altitud, type="l", ylab="Altitude (m)", xlab="", 
+  xaxt='n', cex.axis=0.7, bty="n", cex.lab=0.8)
+par(mar = c(1,4,0,1) + 0.1)
+barplot(t(as.matrix(tbl[,1:3])), col=c("green", "blue", "red"),
+  xlab=NA, ylab=NA, border=NA, xaxt="n", yaxt="n", cex.axis=0.8)
+```
+
+3) Utiliza ggplot2 para hacer una gráfica de barras con los datos de "../Practicas/Uni7/data/reads.txt" de manera que en el eje Y tengas el número de lecturas y en X cada muestra. Las muestras pueden estar en cualquier orden, pero deben estar coloreadas acorde a las diferentes poblaciones (pobA,pobB,etc), controles negativos y outgroups (pista: necesitas antes de graficar crear una columna nueva que contenga la info anterior). Pega en el recuadro de abajo tu script.
+
+
+```{r}
+# cargar ggplot2
+library(ggplot2)
+
+# leer datos
+reads<-read.delim("../data/reads.txt")
+
+# plot bars
+p<-ggplot(data=reads, aes(x=sample, y=nreads, fill=Library)) +
+  geom_bar(stat="identity")
+p
+
+# cambiar nombres muestras
+p <- p + theme(axis.text.x= element_text(angle=45, hjust=1, size=5))
+p
+
+```
+
+
+4) Escoge uno de los paquetes que tu equipo eligió en el ejercicio pasado. 2. Busca un tutorial, ayuda o vignette de ese paquete y síguelo con tus datos propios o con datos parecidos a los que tendrás que ya se encuentren publicados. 3. Utiliza knitr para crear un "notebook" de lo que realizaste. 4. Sube el código (.R) y el notebook (.html) a tu cuenta de github y pégalo en el recuadro de abajo.
+
+
+5) Es una buena idea guardar mi Workspace cada vez que salga de R.
+`FALSO`
+
+6) ¿Por qué no debo poner setwd() con una ruta absoluta dentro de mis scripts? 
+Por que no correrá en otra computadora, lo que disminuye la reproducibilidad de mi script
+
+7) Reescribe la siguiente función de ggplot para que los puntos queden coloreados de acuerdo a la especie: `ggplot(data=iris, aes(x=Sepal.Length, y= Sepal.Width)) + geom_point()`
+
+```{r}
+library(ggplot2)
+ggplot(data=iris, aes(x=Sepal.Length, y= Sepal.Width, color=Species)) + geom_point()
+# o
+ggplot(data=iris, aes(x=Sepal.Length, y= Sepal.Width)) + geom_point(aes(color= Species, shape=Species))
+
+```
+
+8) ¿Para qué puede sernos útil la función source() en un proyecto bioinformático que involucre varios scripts?
+
+9) Genera los datos de `dat` con el código de abajo y utiliza ggplot2 para hacer un histograma como el que se muestra en la imagen. Pega en el recuadro el código que utilizaste para hacer la gráfica (incluye el código de abajo y cualquier otra cosa que sea necesaria). Nota: los colores utilizados fueron "green3" y "darkblue".
+
+
+```{r}
+set.seed(10)
+dat <- data.frame(species = factor(rep(c("inventus","otrus"), each=300)), 
+                   size = c(rnorm(300, mean=162),rnorm(300, mean=165)))
+
+library(ggplot2)
+
+ggplot(dat, aes(x=size, fill=species)) +
+    geom_histogram(binwidth=.3, alpha=.5, position="identity") +
+    guides(fill=guide_legend(title="Especie")) + 
+    xlab("Tamaño") + ylab("Individuos") +
+    scale_fill_manual(values=c("green3", "darkblue"))
+
+```
+
+
+
